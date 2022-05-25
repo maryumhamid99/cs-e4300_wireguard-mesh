@@ -1,5 +1,5 @@
 import os
-import requests 
+import requests
 import json
 import sys
 from requests.structures import CaseInsensitiveDict
@@ -7,50 +7,33 @@ from requests.structures import CaseInsensitiveDict
 import re
 
 def refresh_token(device_id, token):
+    print(token)
+    print("token")
     headers = CaseInsensitiveDict()
     headers["Accept"] = "*/*"
     headers["Content-Type"] = "application/json"
     headers["Authorization"] = "Bearer " + token
-    # url = "http://meshmash.vikaa.fi:49177"+ "/devices/" + device_id + "/token"
-    resp = requests.get(f'http://meshmash.vikaa.fi:49177/devices/{device_id}/token', headers={'Authorization': f'Bearer {token}'})
-    # resp = requests.get(url, headers=headers)
+    url = "http://meshmash.vikaa.fi:49177"+ "/devices/" + device_id + "/token"
+    resp = requests.get(url, headers=headers)
 
 
     print("response")
-    print(resp)
+    print(resp.json())
 
 
     return resp.json()["token"]
-    
+
 def main():
+    print(sys.argv[3])
     overlay_id = sys.argv[1]
     device_id = sys.argv[2]
-    token = sys.argv[4]
 
- 
-
-    # with open("token.txt", "r") as file:
-    #     response_token = file.read()
-
-    # response = json.loads(response_token)
-
-
-    # # with open("api.key", "r") as file:
-    # #     api_key = file.read()
-
-    # # response = requests.get(f'http://meshmash.vikaa.fi:49177/devices/{device_id}/token', headers={"x-api-key" : f'{api_key}'})
-  
-    # print("response_token")
-
-    # print(response_token)
-    # print(type(response_token))
-
-
-
-    # token = response["token"]
+    with open("token.txt", "r") as file:
+        token = file.read().strip()
+    print(token)
 
     token = refresh_token(device_id, token)
-    
+
     config = requests.get(f'http://meshmash.vikaa.fi:49177/overlays/{overlay_id}/devices/{device_id}/wgconfig?', headers={'Authorization': f'Bearer {token}'})
     final_config = re.sub(r"Peer \d+", "Peer", config.content.decode("utf-8"))
     final_config = final_config.replace(": 51820", ":5555")
@@ -63,7 +46,7 @@ def main():
 
     with open("private.key", "r") as file:
         private_key = file.read()
-    
+
     sample_interface = sample_interface.format(private_key=private_key, virtual_address=sys.argv[3])
 
     with open("/etc/wireguard/wg0.conf", "w") as file:
@@ -75,4 +58,3 @@ def main():
 
 if __name__ == "__main__" :
     main()
-
