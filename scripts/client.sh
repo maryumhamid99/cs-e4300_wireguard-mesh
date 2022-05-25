@@ -29,5 +29,5 @@ pip3 install requests
 
 curl http://meshmash.vikaa.fi:49177/devices/$2/token -H "x-api-key: 591Bc13b7129eE1f8eF3F4A7BAf7B7EB" -H "Content-Type: application/json"  -o token.txt
 
-sudo python3 main.py $1 $2 $3
+sudo python3 main.py $1 $2 $3 $4
 
