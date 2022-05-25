@@ -111,7 +111,7 @@ Vagrant.configure("2") do |config|
     client_a1.vm.provision :file, source: './apps/privates/privkey1.key',
       destination: "overlay_manager/private.key"
     # Install dependencies and define the NAT
-    client_a1.vm.provision :shell, run: "always", path: "scripts/client.sh", :args => ["747b7c1a96bf453fb3ad37a2e66e959e","e3a4ca7d319d4bac954c09a04be43662", "10.0.0.1/24"]
+    client_a1.vm.provision :shell, run: "always", path: "scripts/client.sh", :args => ["acfdd8113f1f4e1781d407eddfb7ef96","ba8d0ecc8f2140f184f20604c59f74ca", "10.0.0.1/24"]
   end
 
   # Client A2
@@ -143,7 +143,7 @@ Vagrant.configure("2") do |config|
     client_a2.vm.provision :file, source: './apps/privates/privkey2.key',
       destination: "overlay_manager/private.key"
     # Install dependencies and define the NAT
-    client_a2.vm.provision :shell, run: "always", path: "scripts/client.sh", :args => ["747b7c1a96bf453fb3ad37a2e66e959e", "b1592860a58b4b77b8573732f2ba6ddc", "10.0.0.2/24"]
+    client_a2.vm.provision :shell, run: "always", path: "scripts/client.sh", :args => ["acfdd8113f1f4e1781d407eddfb7ef96", "7be0479e124f42ff9e435b2656431f66", "10.0.0.2/24"]
   end
 
   #######################
@@ -238,7 +238,7 @@ Vagrant.configure("2") do |config|
     client_b1.vm.provision :file, source: './apps/privates/privkey4.key',
       destination: "overlay_manager/private.key"
     # Install dependencies and define the NAT
-    client_b1.vm.provision :shell, run: "always", path: "scripts/client2.sh", :args => ["63e2da968ef44e9194ac46b7c68aa7ec", "dc5ab8befdb34719bed49be355c3e5cd", "10.0.1.1/24"]
+    client_b1.vm.provision :shell, run: "always", path: "scripts/client2.sh", :args => ["53aaa3af93c04a83aff95d674c4b9743", "780c397dcdf74bda88ce7ffdb3c45a01", "10.0.1.1/24"]
   end
 
   # Client B2
@@ -271,7 +271,7 @@ Vagrant.configure("2") do |config|
     client_b2.vm.provision :file, source: './apps/privates/privkey5.key',
       destination: "overlay_manager/private.key"
     # Install dependencies and define the NAT
-    client_b2.vm.provision :shell, run: "always", path: "scripts/client2.sh", :args => ["63e2da968ef44e9194ac46b7c68aa7ec", "35d2e1ae8cf94afcb7d3e977b6f8fa5c", "10.0.1.2/24"]
+    client_b2.vm.provision :shell, run: "always", path: "scripts/client2.sh", :args => ["53aaa3af93c04a83aff95d674c4b9743", "9afccfc8aeb54afd982f489d325c5c08", "10.0.1.2/24"]
   end
 
   ##########################
@@ -341,7 +341,7 @@ Vagrant.configure("2") do |config|
     server_s1.vm.provision :file, source: './apps/privates/privkey3.key',
       destination: "overlay_manager/private.key"
     # Install dependencies and define the NAT
-    server_s1.vm.provision :shell, run: "always", path: "scripts/cloud_server.sh", :args => ["747b7c1a96bf453fb3ad37a2e66e959e", "30b7f2892f2b467a87cae37228ab31af", "10.0.0.3/24"]
+    server_s1.vm.provision :shell, run: "always", path: "scripts/cloud_server.sh", :args => ["acfdd8113f1f4e1781d407eddfb7ef96", "f1f0b43ee8dd48eaa8385ed079658b46", "10.0.0.3/24"]
   end
 
   # Cloud server S2
@@ -374,7 +374,7 @@ Vagrant.configure("2") do |config|
       destination: "overlay_manager/private.key"
     
     # Install dependencies and define the NAT
-    server_s2.vm.provision :shell, run: "always", path: "scripts/cloud_server.sh", :args => ["63e2da968ef44e9194ac46b7c68aa7ec", "e312a51ea808407b88b696b1ecdce0e2", "10.0.1.3/24"]
+    server_s2.vm.provision :shell, run: "always", path: "scripts/cloud_server.sh", :args => ["53aaa3af93c04a83aff95d674c4b9743", "79fff66041014b56bcf71687e9b4d3a5", "10.0.1.3/24"]
   end
 
 end

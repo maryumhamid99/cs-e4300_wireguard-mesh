@@ -2,7 +2,26 @@ import os
 import requests 
 import json
 import sys
+from requests.structures import CaseInsensitiveDict
+
 import re
+
+def refresh_token(device_id, token):
+    print(token)
+    print("token")
+    headers = CaseInsensitiveDict()
+    headers["Accept"] = "*/*"
+    headers["Content-Type"] = "application/json"
+    headers["Authorization"] = "Bearer " + token
+    url = "http://meshmash.vikaa.fi:49177"+ "/devices/" + device_id + "/token"
+    resp = requests.get(url, headers=headers)
+
+
+    print("response")
+    print(resp.json())
+
+
+    return resp.json()["token"]
 
 
 def main():
@@ -16,12 +35,6 @@ def main():
 
     response = json.loads(response_token)
 
-
-    # with open("api.key", "r") as file:
-    #     api_key = file.read()
-
-    # response = requests.get(f'http://meshmash.vikaa.fi:49177/devices/{device_id}/token', headers={"x-api-key" : f'{api_key}'})
-  
     print("response_token")
 
     print(response_token)
@@ -31,7 +44,9 @@ def main():
 
     token = response["token"]
     print("token")
-
+    
+    token = refresh_token(device_id, token)
+    
     print(token)
     print(type(token))
     
